@@ -13,7 +13,7 @@ jobs:
         python-version: '3.11'
     - run: pip install pyinstaller python-docx mammoth beautifulsoup4 lxml
     - run: pyinstaller --onefile --windowed test.py
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: exe-file
         path: dist/*.exe
