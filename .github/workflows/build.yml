@@ -1,0 +1,19 @@
+name: Build EXE
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    - run: pip install pyinstaller python-docx mammoth beautifulsoup4 lxml
+    - run: pyinstaller --onefile --windowed test.py
+    - uses: actions/upload-artifact@v3
+      with:
+        name: exe-file
+        path: dist/*.exe
